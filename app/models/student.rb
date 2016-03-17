@@ -19,11 +19,11 @@
 
 class Student < ActiveRecord::Base
   module Gender
-    MALE = 1
-    FEMALE = 2
+    MALE = {code: 1, label: "Male"}
+    FEMALE = {code: 2, label: "Female"}
 
     def self.all
-      [MALE, FEMALE]
+      [MALE, FEMALE].collect{|hsh| OpenStruct.new(hsh)}
     end
   end
 
