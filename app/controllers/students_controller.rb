@@ -14,6 +14,10 @@ class StudentsController < ApplicationController
     @save_success = @student.save
   end
 
+  def show
+    @student = @section.students.find(params[:id])
+  end
+
 private
 def fetch_section
   @klass = Klass.find(params[:klass_id])
