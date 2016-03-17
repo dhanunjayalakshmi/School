@@ -14,6 +14,15 @@ class StudentsController < ApplicationController
     @save_success = @student.save
   end
 
+  def edit
+    @student = @section.students.find(params[:id])
+  end
+
+  def update
+      @student = @section.students.find(params[:id])
+      @save_success = @student.update_attributes(student_params)
+  end
+
   def show
     @student = @section.students.find(params[:id])
   end
@@ -25,6 +34,6 @@ def fetch_section
 end
 
 def student_params
-  params.require(:student).permit(:name, :fathers_name, :gender, :email, :dob, :phone, :address)
+  params.require(:student).permit(:name, :fathers_name, :gender, :email, :dob, :phone, :address, :house_id)
 end
 end
