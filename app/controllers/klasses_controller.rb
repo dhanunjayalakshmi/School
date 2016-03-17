@@ -2,6 +2,7 @@ class KlassesController < ApplicationController
   def index
     @klasses = Klass.all
     @new_klass = Klass.new
+    @new_section = Section.new
   end
 
   def create
