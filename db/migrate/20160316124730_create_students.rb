@@ -6,7 +6,7 @@ class CreateStudents < ActiveRecord::Migration
       t.integer :roll_number
       t.string :name
       t.string :fathers_name
-      t.string :gender
+      t.integer :gender
       t.string :email
       t.date :dob
       t.string :phone

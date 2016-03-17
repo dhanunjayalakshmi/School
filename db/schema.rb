@@ -40,7 +40,7 @@ ActiveRecord::Schema.define(version: 20160316124730) do
     t.integer  "roll_number"
     t.string   "name"
     t.string   "fathers_name"
-    t.string   "gender"
+    t.integer  "gender"
     t.string   "email"
     t.date     "dob"
     t.string   "phone"
