@@ -8,7 +8,7 @@
 #  roll_number  :integer
 #  name         :string
 #  fathers_name :string
-#  gender       :string
+#  gender       :integer
 #  email        :string
 #  dob          :date
 #  phone        :string
