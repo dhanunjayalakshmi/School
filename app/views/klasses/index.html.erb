@@ -27,10 +27,24 @@
     <div id="students" class="col-md-4 hidden">
       <div class="panel panel-info">
         <div class="panel-heading">
-          <%= link_to fa_icon("plus-circle"), "#", class: "pull-right", remote: true %>
+          <%= link_to fa_icon("plus-circle"), "#", class: "pull-right", id:"add-student-trigger", remote: true %>
+          <span class="pull-right">&nbsp; &nbsp;</span>
+          <%= link_to fa_icon("hand-o-up"), "#", class: "pull-right", id:"take-attendance-trigger", remote: true %>
           <b>Students</b>
         </div>
         <div id="students-list" class="list-group">
+        </div>
+      </div>
+    </div>
+    <div id="attendance" class="col-md-4 hidden">
+      <div class="panel panel-info">
+        <div class="panel-heading">
+          <%= link_to "Submit", "#", class: "pull-right btn btn-sm btn-primary", id:"submit-attendance", remote: true %>
+          <span class="pull-right">&nbsp; &nbsp;</span>
+          <%= link_to "Cancel", "#", class: "pull-right btn btn-sm btn-default", id:"cancel-attendance", remote: true %>
+          <b>Attendance</b>
+        </div>
+        <div id="attendants-list" class="list-group">
         </div>
       </div>
     </div>
