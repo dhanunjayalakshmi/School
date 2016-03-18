@@ -1,6 +1,8 @@
 class AttendanceRegistriesController < ApplicationController
   before_action :fetch_section
+
   def new
+    @students = @section.students
   end
 
 private

@@ -1,5 +1,6 @@
 $('#students').addClass('hidden');
-StudentDBUtils.hide('#student');
+StudentsDBUtils.hide('#student');
 $('#attendance').removeClass('hidden');
 $('#attendance .panel-heading a#cancel-attendance').attr('href', '<%= klass_section_students_path(@klass, @section) %>');
-// $('#students .panel-heading a#take-attendance-trigger').attr('href', '<%= new_klass_section_attendance_registry_path(@klass, @section) %>');
+$('#attendants-list').html('<%=  j render(partial: "attendance_registries/attendants", locals: {students: @students}) %>');
+AttendantUtils.init();
