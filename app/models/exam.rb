@@ -18,6 +18,10 @@ class Exam < ActiveRecord::Base
 
   attr_accessor :file
 
+  def total
+    self.english + self.hindi + self.mathematics + self.science + self.social
+  end
+
   def high(subject_name)
     self.student.section.students.collect do |st|
       st.exam.send(subject_name)
