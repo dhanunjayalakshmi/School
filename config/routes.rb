@@ -1,14 +1,11 @@
 Rails.application.routes.draw do
-  get 'attendance_registries/new'
-
-  get 'students/index'
-
   resources :klasses do
     resources :sections do
       resources :students
       resources :attendance_registries
     end
   end
+  resources :exams, only: [:new, :create]
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
