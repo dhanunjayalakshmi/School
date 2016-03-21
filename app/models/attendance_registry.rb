@@ -11,7 +11,7 @@
 
 class AttendanceRegistry < ActiveRecord::Base
   belongs_to :section
-  has_many :absentees
+  has_many :absentees, dependent: :destroy
 
   after_create :create_absentees
   after_update :update_absentees
