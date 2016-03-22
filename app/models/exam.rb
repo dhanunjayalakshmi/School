@@ -31,17 +31,26 @@ class Exam < ActiveRecord::Base
   def avg(subject_name)
     arr = self.student.section.students.collect { |st|
       st.exam.send(subject_name)}
-    avg = arr.inject{ |sum, el| sum + el }.to_f / arr.size
-    avg = avg.round(2)
+    avg = arr.inject{ |sum, el| sum + el } / arr.size
     # Exam.average(subject_name).where(:subject_name => self.student.section.student.exam.subject_name)
   end
 
   def percentile(subject_name)
     arr = self.student.section.students.collect { |st|
       st.exam.send(subject_name)}
-    total_students = self.student.section.students.count - 1
+    total_students = self.student.section.students.count
     marks = self.send(subject_name)
-    x = arr.count {|a| a < marks}
-    percentile = ((x / total_students.to_f)*100).round(2)
+    x = arr.count {|a| a <= marks}
+    percentile = (x*100)/ total_students
+  end
+
+  def rank(subject_name)
+    arr = self.student.section.students.collect { |st|
+      st.exam.send(subject_name)}
+    total_students = self.student.section.students.count
+    marks = self.send(subject_name)
+    x = arr.count {|a| a <= marks}
+
+    return total_students - x + 1
   end
 end
