@@ -22,35 +22,23 @@ class Exam < ActiveRecord::Base
     self.english + self.hindi + self.mathematics + self.science + self.social
   end
 
-  def high(subject_name)
-    self.student.section.students.collect do |st|
-      st.exam.send(subject_name)
-    end.max
-  end
+  def stats(subject_name)
+    @stats ||= {}
+    return @stats[subject_name] if @stats[subject_name]
+    my_score = self.send(subject_name)
 
-  def avg(subject_name)
-    arr = self.student.section.students.collect { |st|
-      st.exam.send(subject_name)}
-    avg = arr.inject{ |sum, el| sum + el } / arr.size
-    # Exam.average(subject_name).where(:subject_name => self.student.section.student.exam.subject_name)
-  end
+    students = self.student.section.students.includes(:exam)
+    scores =students.collect { |st| st.exam.send(subject_name) }
 
-  def percentile(subject_name)
-    arr = self.student.section.students.collect { |st|
-      st.exam.send(subject_name)}
-    total_students = self.student.section.students.count
-    marks = self.send(subject_name)
-    x = arr.count {|a| a <= marks}
-    percentile = (x*100)/ total_students
-  end
+    high = scores.max
+    average = scores.reduce(:+)/students.count
 
-  def rank(subject_name)
-    arr = self.student.section.students.collect { |st|
-      st.exam.send(subject_name)}
-    total_students = self.student.section.students.count
-    marks = self.send(subject_name)
-    x = arr.count {|a| a <= marks}
+    less = scores.count { |score| score <= my_score }
+    percentile = 100*less/students.count
+    rank = students.count - less + 1
 
-    return total_students - x + 1
+    @stats[subject_name] = {high: high, average: average, percentile: percentile, rank: rank}
+
+    return @stats[subject_name]
   end
 end
