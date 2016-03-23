@@ -10,4 +10,8 @@ class KlassesController < ApplicationController
     @save_success = @klass.save
   end
 
+  def analytics
+
+  end
+
 end
