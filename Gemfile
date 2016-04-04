@@ -13,6 +13,7 @@ gem 'simple_form'
 gem 'annotate'
 gem 'faker'
 gem 'spreadsheet'
+gem 'chartkick'
 
 
 gem 'sdoc', '~> 0.4.0', group: :doc

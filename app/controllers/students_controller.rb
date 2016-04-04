@@ -34,6 +34,6 @@ def fetch_section
 end
 
 def student_params
-  params.require(:student).permit(:name, :fathers_name, :gender, :email, :dob, :phone, :address, :house_id)
+  params.require(:student).permit(:roll_number, :name, :fathers_name, :gender, :email, :dob, :phone, :address, :house_id)
 end
 end

@@ -26,7 +26,7 @@
     <% [:english, :hindi, :mathematics, :science, :social, :total].each do |property| %>
       <tr>
         <td>
-          <%= property.to_s.gsub("_", " ").titlecase %>
+          <%= property.to_s.titlecase %>
         </td>
         <td>
           <%= exam.send(property) %>

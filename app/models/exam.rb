@@ -31,10 +31,9 @@ class Exam < ActiveRecord::Base
       # exam.mathematics = data[4].to_i
       # exam.science     = data[5].to_i
       # exam.social      = data[6].to_i
-      j = 2
-      [:english, :hindi, :mathematics, :science, :social].each do |subject|
-        exam.send(subject, data[j].to_i)
-        j += 1
+      subjects = [:english, :hindi, :mathematics, :science, :social]
+      (0...subjects.length).each do |i|
+        exam.send(subjects[i], data[i+2].to_i)
       end
       exam.save!
     end
@@ -54,9 +53,10 @@ class Exam < ActiveRecord::Base
 
 private
   def fetch_stats(subject_name)
+    puts "#{subject_name}"
     my_score = self.send(subject_name)
 
-    students = self.student.section.students.includes(:exam)
+    students = self.student.section.students.includes(:exam).select{|st| st.exam.present?}
     scores = get_scores(students, subject_name)
 
     high = scores.max
