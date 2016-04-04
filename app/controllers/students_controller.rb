@@ -3,11 +3,6 @@ class StudentsController < ApplicationController
 
   def index
     @students = @section.students.includes(:house)
-    respond_to do |format|
-      format.html
-      format.xml { render :xml => @students.to_xml}
-      format.json { render :json => @students.to_json}
-    end
   end
 
   def new
