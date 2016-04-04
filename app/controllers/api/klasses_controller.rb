@@ -1,6 +1,6 @@
 module Api
   class KlassesController < ApplicationController
-    before_action :fetch_klass, only: [:show, :update]
+    before_action :fetch_klass, only: [:show, :update, :destroy]
     def index
       @klasses =  Klass.all
     end
@@ -26,6 +26,16 @@ module Api
         head :bad_request
       end
     end
+
+    def destroy
+      if params[:name] == @klass.name
+        @klass.destroy
+        head :ok
+      else
+        head :bad_request
+      end
+    end
+
   private
     def fetch_klass
       @klass = Klass.find(params[:id])
