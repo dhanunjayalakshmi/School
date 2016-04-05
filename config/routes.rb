@@ -8,10 +8,18 @@ Rails.application.routes.draw do
       end
     end
     namespace :v2 do
-      resources :klasses, except: [:edit, :new]
+      resources :klasses, except: [:edit, :new] do
+        resources :sections, except: [:edit, :new] do
+          resources :students, except: [:edit, :new]
+        end
+      end
     end
     namespace :v3 do
-      resources :klasses, except: [:edit, :new]
+      resources :klasses, except: [:edit, :new] do
+        resources :sections, except: [:edit, :new] do
+          resources :students, except: [:edit, :new]
+        end
+      end
     end
   end
 
