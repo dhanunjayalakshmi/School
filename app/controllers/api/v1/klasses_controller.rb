@@ -37,10 +37,11 @@ module Api
         end
       end
 
-      private
+    private
       def fetch_klass
         @klass = Klass.find(params[:id])
       end
+
     end
   end
 end

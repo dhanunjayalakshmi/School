@@ -14,6 +14,7 @@ gem 'annotate'
 gem 'faker'
 gem 'spreadsheet'
 gem 'chartkick'
+gem 'random_password_generator'
 # gem 'active_model_serializers'
 
 
@@ -21,6 +22,7 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 
 group :development, :test do
   gem 'byebug'
+  gem 'dotenv-rails'
 end
 
 group :development do
