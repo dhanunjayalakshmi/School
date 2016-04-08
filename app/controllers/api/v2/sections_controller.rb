@@ -15,7 +15,7 @@ module Api
         @section = @klass.sections.new
         @section.name = params[:name]
         if @section.save
-          head :created, location: api_klass_section_url(@klass, @section)
+          head :created, location: api_v2_klass_sections_url(@klass)
         else
           head :bad_request
         end
@@ -24,7 +24,7 @@ module Api
       def update
         @section.name = params[:name]
         if @section.save
-          head :serveraccepted, location: api_klass_section_url(@section)
+          head :ok, location: api_v2_klass_section_url(@klass, @section)
         else
           head :bad_request
         end

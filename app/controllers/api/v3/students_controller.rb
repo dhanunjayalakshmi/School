@@ -12,19 +12,18 @@ module Api
       end
 
       def create
-        @student = @klass.students.new
-        @student.roll_number = params[:roll_number]
-        @student.name = params[:name]
-        @student.fathers_name = params[:fathers_name]
-        @student.gender = params[:gender]
-        @student.email = params[:email]
-        @student.dob = params[:dob]
-        @student.phone = params[:phone]
-        @student.address = params[:address]
-        @student.house_id = params[:house_id]
-        @student.section_id = params[:section_id]
+        @student = @section.students.new(student_params)
+        # @student.roll_number = params[:roll_number]
+        # @student.name = params[:name]
+        # @student.fathers_name = params[:fathers_name]
+        # @student.gender = params[:gender]
+        # @student.email = params[:email]
+        # @student.dob = params[:dob]
+        # @student.phone = params[:phone]
+        # @student.address = params[:address]
+        # @student.house_id = params[:house_id]
         if @student.save
-          head :created, location: api_klass_section_student_url(@klass, @section, @student)
+          head :created, location: api_v3_klass_section_students_url(@klass, @section)
         else
           head :bad_request
         end
@@ -42,7 +41,7 @@ module Api
         @student.house_id = params[:house_id] || @student.house_id
         @student.section_id = params[:section_id] || @student.section_id
         if @student.save
-          head :serveraccepted, location: api_klass_section_student_url(@klass, @section, @student)
+          head :ok, location: api_v3_klass_section_student_url(@klass, @section, @student)
         else
           head :bad_request
         end
@@ -65,6 +64,10 @@ module Api
       def fetch_section
         @klass = Klass.find(params[:klass_id])
         @section = @klass.sections.find(params[:section_id])
+      end
+
+      def student_params
+        params.require(:student).permit(:roll_number, :name, :fathers_name, :gender, :email, :dob, :phone, :address, :house_id)
       end
 
     end

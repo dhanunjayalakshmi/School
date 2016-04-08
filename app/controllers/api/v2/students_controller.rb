@@ -24,7 +24,7 @@ module Api
         @student.house_id = params[:house_id]
         @student.section_id = params[:section_id]
         if @student.save
-          head :created, location: api_klass_section_student_url(@klass, @section, @student)
+          head :created, location: api_v2_klass_section_students_url(@klass, @section)
         else
           head :bad_request
         end
@@ -42,7 +42,7 @@ module Api
         @student.house_id = params[:house_id] || @student.house_id
         @student.section_id = params[:section_id] || @student.section_id
         if @student.save
-          head :serveraccepted, location: api_klass_section_student_url(@klass, @section, @student)
+          head :ok, location: api_v2_klass_section_student_url(@klass, @section, @student)
         else
           head :bad_request
         end
