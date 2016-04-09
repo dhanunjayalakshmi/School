@@ -15,6 +15,7 @@ gem 'faker'
 gem 'spreadsheet'
 gem 'chartkick'
 gem 'random_password_generator'
+gem 'rack-cors', :require => 'rack/cors'
 # gem 'active_model_serializers'
 
 
